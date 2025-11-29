@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sistem Pendukung Keputusan | BLP Team</title>
 
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/logo.jpg') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('img/logo.jpg') }}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/blpbeauty.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/blpbeauty.png') }}" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('dashboard.layouts.link')
