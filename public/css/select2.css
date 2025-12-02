@@ -4,14 +4,11 @@
     height: 40px;
     margin-bottom: 10px;
     outline: none !important;
-    border-radius: 10px;
     transition: all 0.15s ease-in-out;
 }
 
-.select2-container
-    .select2-dropdown
-    .select2-results
-    ul
-    .select2-results__option--highlighted[aria-selected] {
+.select2-container .select2-dropdown {
+}
+.select2-results ul .select2-results__option--highlighted[aria-selected] {
     background-color: #617a55;
 }
