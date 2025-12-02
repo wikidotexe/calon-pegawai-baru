@@ -64,7 +64,7 @@
                     <tbody>
                         @foreach ($penilaian->unique('alternatif_id') as $item)
                         <tr>
-                            <td>{{ $item->alternatif->objek->nama }}</td>
+                            <td>{{ $item->alternatif->objek->nama_kandidat }}</td>
                             @foreach ($penilaian->where('alternatif_id', $item->alternatif_id) as $value)
                             <td>
                                 @if ($value->subKriteria != null) {{ $value->subKriteria->nilai }} @endif

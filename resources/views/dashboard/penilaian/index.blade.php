@@ -30,7 +30,7 @@
                             @foreach ($data->unique('alternatif_id') as $item)
                                 <tr>
                                     <td>
-                                        {{ $item->alternatif->objek->nama }}
+                                        {{ $item->alternatif->objek->nama_kandidat }}
                                         <a href="{{ route('penilaian.ubah', $item->alternatif_id) }}"><i class="ri-pencil-fill text-xl text-warning"></i></a>
                                     </td>
                                     @foreach ($data->where('alternatif_id', $item->alternatif_id) as $value)

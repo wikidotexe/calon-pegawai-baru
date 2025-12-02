@@ -16,10 +16,10 @@ class Alternatif extends Model
 
     protected $fillable = [
         "objek_id",
-        "nama",             // <- Tambahkan ini
-        "kendaraan",        // <- Tambahkan ini
-        "nomor_polisi",     // <- Tambahkan ini
-        "nama_kendaraan",   // <- Tambahkan ini
+        "nama_kandidat",             // <- Tambahkan ini
+        "posisi_lamar",        // <- Tambahkan ini
+        "pendidikan_terakhir",     // <- Tambahkan ini
+        "pengalaman_kerja",   // <- Tambahkan ini
     ];
 
     public function objek()

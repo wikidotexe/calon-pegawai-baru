@@ -5,32 +5,32 @@
         <div class="flex-none w-full max-w-full px-3">
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex flex-row items-center justify-between p-6 pb-0 mb-4 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6>Tabel Kelola Data Kendaraan</h6>
+                    <h6>Tabel Kelola Data Kandidat</h6>
                     <label for="add_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-greenPrimary to-greenPrimary/80 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
                         <i class="ri-add-fill"></i>
-                        Tambah Data Kendaraan
+                        Tambah Data Kandidat
                     </label>
                 </div>
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                     <table id="tabel_data" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama Kendaraan</th>
-                                <th>Jenis Kendaraan</th>
-                                <th>Nomor Polisi</th>
-                                <th>Merk Kendaraan</th>
+                                <th>Nama Kandidat</th>
+                                <th>Posisi Yang Dilamar</th>
+                                <th>Pendidikan Terakhir</th>
+                                <th>Pengalaman Kerja</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td>{{ $item->objek->nama }}</td>
-                                <td>{{ $item->objek->kendaraan ?? '-' }}</td>
-                                <td>{{ $item->objek->nomor_polisi ?? '-' }}</td>
-                                <td>{{ $item->objek->nama_kendaraan ?? '-' }}</td>
+                                <td>{{ $item->objek->nama_kandidat }}</td>
+                                <td>{{ $item->objek->posisi_lamar ?? '-' }}</td>
+                                <td>{{ $item->objek->pendidikan_terakhir ?? '-' }}</td>
+                                <td>{{ $item->objek->pengalaman_kerja ?? '-' }}</td>
                                 <td class="flex gap-x-3">
-                                    <button onclick="return delete_button('{{ $item->id }}', '{{ $item->objek->nama }}');">
+                                    <button onclick="return delete_button('{{ $item->id }}', '{{ $item->objek->nama_kandidat }}');">
                                         <i class="ri-delete-bin-line text-xl"></i>
                                     </button>
                                 </td>
@@ -54,7 +54,7 @@
 
                         <!-- Pilih Objek -->
                         <div class="mb-6">
-                            <label class="block mb-1 font-medium">Pilih Objek</label>
+                            <label class="block mb-1 font-medium">Pilih Data Kandidat</label>
 
                             <select name="objek_id[]" id="objek_id" multiple="multiple"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-10 text-dark 
@@ -62,7 +62,7 @@
                                 @foreach ($objek as $item)
                                     <option value="{{ $item->id }}"
                                         @selected(collect(old('objek_id'))->contains($item->id))>
-                                        {{ $item->nomor_polisi }}
+                                        {{ $item->nama_kandidat }}
                                     </option>
                                 @endforeach
                             </select>
@@ -142,13 +142,13 @@
     @endif
 
     // Fungsi hapus
-    function delete_button(id, nama) {
+    function delete_button(id, nama_kandidat) {
         Swal.fire({
             title: 'Apakah Anda yakin?',
             html:
                 "<p>Data tidak dapat dipulihkan kembali!</p>" +
                 "<div class='divider'></div>" +
-                "<b>Data: " + nama + "</b>",
+                "<b>Data: " + nama_kandidat + "</b>",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#6419E6',

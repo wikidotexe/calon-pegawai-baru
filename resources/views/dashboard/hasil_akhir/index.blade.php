@@ -20,8 +20,8 @@
                     <table id="tabel_data_hasil" class="stripe hover" style="width:100%; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Nomor Polisi</th>
+                                <th>Nama Kandidat</th>
+                                <th>Posisi Yang Dilamar</th>
                                 <th>Nilai</th>
                                 <th>Target</th>
                                 <th>Keterangan</th>
@@ -31,7 +31,7 @@
                             @foreach ($hasilTopsis as $item)
                                 <tr>
                                     <td>{{ $item->nama_objek }}</td>
-                                    <td>{{ $item->nomor_polisi }}</td>
+                                    <td>{{ $item->posisi_lamar }}</td>
                                     <td>{{ round($item->nilai, 3) }}</td>
                                     <td>0.5</td> 
                                     <td>{{ $item->keterangan }}</td>

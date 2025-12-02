@@ -84,7 +84,7 @@ class TopsisController extends Controller
         $idealNegatif = $this->topsisServices->getIdealNegatif();
         $hasilTopsis = $this->topsisServices->getHasilTopsis();
 
-        $logo = base64_encode(file_get_contents(public_path('img/logo_telkom.png')));
+        $logo = base64_encode(file_get_contents(public_path('img/logo.jpg')));
 
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif'])
             ->loadview('dashboard.pdf.perhitungan', [
@@ -113,7 +113,7 @@ class TopsisController extends Controller
         $judul = "Laporan Hasil Akhir";
         $hasilTopsis = $this->topsisServices->getHasilTopsis();
 
-        $logo = base64_encode(file_get_contents(public_path('img/logo_telkom.png')));
+        $logo = base64_encode(file_get_contents(public_path('img/logo.jpg')));
         
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif'])
             ->loadview('dashboard.pdf.hasil_akhir', [
@@ -158,7 +158,7 @@ class TopsisController extends Controller
 
             foreach ($penilaianKriteria as $value) {
                 if ($value->sub_kriteria_id == null) {
-                    abort(403, "Masukkan nilai alternatif ". $value->alternatif->objek->nama ."!");
+                    abort(403, "Masukkan nilai alternatif ". $value->alternatif->objek->nama_kandidat ."!");
                 }
                 $hitungMatriks += pow($value->subKriteria->nilai, 2);
             }

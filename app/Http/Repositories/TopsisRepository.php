@@ -46,7 +46,7 @@ class TopsisRepository
             ->join('kriteria as k', 'k.id', 'mnk.kriteria_id')
             ->join('alternatif as a', 'a.id', 'mnk.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('mnk.*', 'k.nama as nama_kriteria', 'o.nama as nama_objek')
+            ->select('mnk.*', 'k.nama as nama_kriteria', 'o.nama_kandidat as nama_objek')
             ->orderBy('mnk.id', 'asc')->get();
 
         return $data;
@@ -81,7 +81,7 @@ class TopsisRepository
             ->join('kriteria as k', 'k.id', 'mnbk.kriteria_id')
             ->join('alternatif as a', 'a.id', 'mnbk.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('mnbk.*', 'k.nama as nama_kriteria', 'o.nama as nama_objek')
+            ->select('mnbk.*', 'k.nama as nama_kriteria', 'o.nama_kandidat as nama_objek')
             ->orderBy('mnbk.id', 'asc')->get();
 
         return $data;
@@ -121,7 +121,7 @@ class TopsisRepository
             ->join('kriteria as k', 'k.id', 'ip.kriteria_id')
             ->join('alternatif as a', 'a.id', 'ip.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('ip.*', 'k.nama as nama_kriteria', 'o.nama as nama_objek')
+            ->select('ip.*', 'k.nama as nama_kriteria', 'o.nama_kandidat as nama_objek')
             ->orderBy('ip.id', 'asc')->get();
 
         return $data;
@@ -154,7 +154,7 @@ class TopsisRepository
             ->join('kriteria as k', 'k.id', 'in.kriteria_id')
             ->join('alternatif as a', 'a.id', 'in.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('in.*', 'k.nama as nama_kriteria', 'o.nama as nama_objek')
+            ->select('in.*', 'k.nama as nama_kriteria', 'o.nama_kandidat as nama_objek')
             ->orderBy('in.id', 'asc')->get();
 
         return $data;
@@ -188,7 +188,7 @@ class TopsisRepository
         $data = DB::table('solusi_ideal_positif as sip')
             ->join('alternatif as a', 'a.id', 'sip.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('sip.*', 'o.nama as nama_objek')
+            ->select('sip.*', 'o.nama_kandidat as nama_objek')
             ->orderBy('sip.id', 'asc')->get();
 
         return $data;
@@ -219,7 +219,7 @@ class TopsisRepository
         $data = DB::table('solusi_ideal_negatif as sin')
             ->join('alternatif as a', 'a.id', 'sin.alternatif_id')
             ->join('objek as o', 'o.id', 'a.objek_id')
-            ->select('sin.*', 'o.nama as nama_objek')
+            ->select('sin.*', 'o.nama_kandidat as nama_objek')
             ->orderBy('sin.id', 'asc')->get();
 
         return $data;
@@ -254,8 +254,8 @@ class TopsisRepository
             ->join('objek as o', 'o.id', 'a.objek_id')
             ->select(
                 'hst.*',
-                'o.nama as nama_objek',
-                'o.nomor_polisi' // tambahkan ini untuk ambil nomor polisi
+                'o.nama_kandidat as nama_objek',
+                'o.posisi_lamar' // tambahkan ini untuk ambil nomor polisi
             )
             ->orderBy('hst.id', 'asc')->get();
 

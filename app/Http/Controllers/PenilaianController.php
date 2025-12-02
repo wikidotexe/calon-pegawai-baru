@@ -65,7 +65,7 @@ class PenilaianController extends Controller
         $tanggal = Carbon::now()->format('Y-m-d_H-i-s');
 
         // Encode logo ke base64 supaya bisa muncul di PDF
-        $logo = base64_encode(file_get_contents(public_path('img/logo_telkom.png')));
+        $logo = base64_encode(file_get_contents(public_path('img/logo.jpg')));
 
         // Buat PDF
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif'])

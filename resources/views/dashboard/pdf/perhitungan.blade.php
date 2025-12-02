@@ -6,9 +6,9 @@
             <img src="data:image/png;base64,{{ $logo }}" style="width: 80px;" alt="Logo">
         </div>
         <div style="flex: 1; text-align: center;">
-            <h2 style="margin: 0; font-size: 18px;">PT. Telkom Akses</h2>
-            <p style="margin: 2px 0; font-size: 12px;">Jalan Kaliabang Tengah No. 1, RT.6/RW.4, Kaliabang Tengah, Bekasi Utara</p>
-            <p style="margin: 2px 0; font-size: 12px;">Telepon: (021) 89190800 | Email: info@telkomakses.co.id</p>
+            <h2 style="margin: 0; font-size: 18px;">PT. Lizzie Parra Kreasi</h2>
+            <p style="margin: 2px 0; font-size: 12px;">Jalan Limau 2 No. 3, RT.6/RW.4, Kebayoran Baru, Kramat Pela, Jakarta Selatan</p>
+            <p style="margin: 2px 0; font-size: 12px;">Telepon: (021) 89190800 | Email: info@blpbeauty.com</p>
         </div>
     </div>
     <hr style="border: 1px solid black; margin-bottom: 2em;">
@@ -52,7 +52,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 @foreach ($penilaian->unique("kriteria_id") as $item)
                                     <th>{{ $item->kriteria->nama }}</th>
                                 @endforeach
@@ -61,7 +61,7 @@
                         <tbody>
                             @foreach ($penilaian->unique("alternatif_id") as $item)
                                 <tr>
-                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $item->alternatif->objek->nama }}</td>
+                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $item->alternatif->objek->nama_kandidat }}</td>
                                     @foreach ($penilaian->where("alternatif_id", $item->alternatif_id) as $value)
                                         <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">
                                             @if ($value->subKriteria != null)
@@ -110,7 +110,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 @foreach ($matriksNormalisasi->unique("kriteria_id") as $item)
                                     <th>{{ $item->nama_kriteria }}</th>
                                 @endforeach
@@ -141,7 +141,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 @foreach ($matriksY->unique("kriteria_id") as $item)
                                     <th>{{ $item->nama_kriteria }}</th>
                                 @endforeach
@@ -172,7 +172,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 @foreach ($idealPositif->unique("kriteria_id") as $item)
                                     <th>{{ $item->nama_kriteria }}</th>
                                 @endforeach
@@ -208,7 +208,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 @foreach ($idealNegatif->unique("kriteria_id") as $item)
                                     <th>{{ $item->nama_kriteria }}</th>
                                 @endforeach
@@ -244,7 +244,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 <th>Nilai</th>
                             </tr>
                         </thead>
@@ -269,7 +269,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 <th>Nilai</th>
                             </tr>
                         </thead>
@@ -294,7 +294,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Nama Kandidat</th>
                                 <th>Nilai</th>
                             </tr>
                         </thead>
@@ -311,9 +311,9 @@
                     <div style="width: 100%; margin-top: 3em; text-align: right;">
                         <p>Bekasi, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
                         <p style="margin-top: 4em; font-weight: bold; text-decoration: underline;">
-                            Guntur Sahadi
+                            Fitria Latifanisa
                         </p>
-                        <p><em>Supervisor Technician</em</p>
+                        <p><em>Sr. People Operation</em</p>
                     </div>
                 </div>
             </div>

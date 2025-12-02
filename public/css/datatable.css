@@ -1,18 +1,17 @@
-/*Form fields*/
+/* ============================
+   FORM FIELDS
+============================ */
 .dataTables_wrapper select,
 .dataTables_wrapper .dataTables_filter input {
     color: #4a5568;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
     line-height: 1.25;
-    border-width: 2px;
+    border: 2px solid #edf2f7;
     border-radius: 0.25rem;
-    border-color: #edf2f7;
     background-color: #edf2f7;
 }
 
+/* Hide default search */
 .dataTables_wrapper .dataTables_filter {
     display: none;
 }
@@ -26,54 +25,74 @@
     background-size: 0.65rem !important;
 }
 
-/*Row Hover*/
+/* ============================
+   ROW HOVER
+============================ */
 table.dataTable.hover tbody tr:hover,
 table.dataTable.display tbody tr:hover {
     background-color: #f6ffde;
 }
 
-/*Pagination Buttons*/
+/* ============================
+   PAGINATION BUTTONS
+============================ */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     font-weight: 700;
     border-radius: 1rem;
     border: 1px solid transparent;
 }
 
-/*Pagination Buttons - Current selected */
+/* Current selected */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
     color: #ffffff !important;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     font-weight: 700;
     border-radius: 0.25rem;
     background: #a4d0a4 !important;
     border: 1px solid transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/*Pagination Buttons - Hover */
+/* Hover */
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     color: #ffffff !important;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    font-weight: 700;
-    border-radius: 0.25rem;
     background: #a4d0a4 !important;
     border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/*Add padding to bottom border */
+/* ============================
+   TABLE BORDER FIX
+============================ */
 table.dataTable.no-footer {
     border-bottom: 1px solid #e2e8f0;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
+    margin: 0.75em 0;
 }
 
-/*Change colour of responsive icon*/
+/* Responsive icon */
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
     background-color: #a4d0a4 !important;
 }
 
+/* ============================
+   SCROLL FIX (SUPER IMPORTANT)
+   Horizontal + Vertical scrolling
+============================ */
+.dataTables_wrapper .dataTables_scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-height: 70vh; /* biar HP/tablet ga kepanjangan */
+}
+
+/* ============================
+   RESPONSIVE FIX
+============================ */
 @media (max-width: 1024px) {
-    /* Buat form input dan select biar fleksibel di layar kecil */
+    /* Form input/select full width */
     .dataTables_wrapper select,
     .dataTables_wrapper .dataTables_filter input {
         width: 100% !important;
@@ -81,23 +100,26 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
         margin-bottom: 0.5rem;
     }
 
-    /* Buat table scroll horizontal kalau overflow */
+    /* Scroll area */
     .dataTables_wrapper .dataTables_scroll {
         overflow-x: auto;
+        overflow-y: auto; /* vertical scroll aktif juga */
         -webkit-overflow-scrolling: touch;
+        max-height: 60vh;
     }
 
+    /* Table width */
     table.dataTable {
         width: 100% !important;
     }
 
-    /* Responsive icon position agar gak nabrak konten */
+    /* Responsive icon posisi biar ga tabrakan */
     table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
     table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
         left: 0.5rem;
     }
 
-    /* Pagination biar rapih di mobile */
+    /* Pagination center */
     .dataTables_wrapper .dataTables_paginate {
         text-align: center;
         margin-top: 1rem;
@@ -107,10 +129,4 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
         text-align: center;
         margin-bottom: 0.5rem;
     }
-}
-
-/* Optional: buat table wrap supaya scrollable di semua screen */
-.dataTables_wrapper .dataTables_scroll {
-    overflow-x: auto;
-    width: 100%;
 }
