@@ -1,0 +1,16 @@
+.select2.select2-container .select2-selection {
+    border: 1px solid #a4d0a4;
+    border-radius: 10px;
+    height: 40px;
+    margin-bottom: 10px;
+    outline: none !important;
+    transition: all 0.15s ease-in-out;
+}
+
+.select2-container
+    .select2-dropdown
+    .select2-results
+    ul
+    .select2-results__option--highlighted[aria-selected] {
+    background-color: #617a55;
+}

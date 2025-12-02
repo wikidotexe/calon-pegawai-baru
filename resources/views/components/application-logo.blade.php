@@ -1,0 +1,1 @@
+<img src="{{ asset('img/logo_telkom.png') }}" alt="Logo" {{ $attributes }}>
