@@ -19,36 +19,40 @@
                     @endif
                 </div>
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                    <table id="tabel_data" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
-                        <thead>
+                    <table id="tabel_data" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                        <thead class="bg-gray-100 text-gray-700">
                             <tr>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Bobot</th>
-                                <th>Aksi</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Kode</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Bobot</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-gray-700">
                             @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->bobot }}</td>
-                                    <td class="flex gap-x-3">
-                                        <label for="edit_button" class="cursor-pointer" onclick="return edit_button('{{ $item->id }}')">
-                                            <i class="ri-pencil-line text-xl"></i>
-                                        </label>
-                                        {{-- <button onclick="return delete_button('{{ $item->id }}', '{{ $item->nama }}');">
-                                            <i class="ri-delete-bin-line text-xl"></i>
-                                        </button> --}}
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->kode }}</td>
+                                    <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama }}</td>
+                                    <td class="px-8 py-4 border border-gray-300 text-center">{{ $item->bobot }}</td>
+                                    <td class="px-8 py-4 border border-gray-300">
+                                        <div class="flex justify-center items-center gap-4">
+                                            <label for="edit_button" class="cursor-pointer text-blue-600 hover:text-blue-800"
+                                                onclick="return edit_button('{{ $item->id }}')">
+                                                <i class="ri-pencil-line text-xl"></i>
+                                            </label>
+                                            {{-- <button class="text-red-600 hover:text-red-800"
+                                                onclick="return delete_button('{{ $item->id }}', '{{ $item->nama }}');">
+                                                <i class="ri-delete-bin-line text-xl"></i>
+                                            </button> --}}
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td style="text-align: center" class="font-bold" colspan="2">Total Bobot:</td>
-                                <td class="font-bold" colspan="2">
+                            <tr class="bg-gray-50 font-bold">
+                                <td class="px-8 py-4 border border-gray-300 text-center" colspan="2">Total Bobot:</td>
+                                <td class="px-8 py-4 border border-gray-300 text-center" colspan="2">
                                     @if ($sumBobot < 1)
                                         {{ $sumBobot }}
                                     @else

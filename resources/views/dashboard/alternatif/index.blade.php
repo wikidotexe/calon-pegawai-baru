@@ -12,27 +12,30 @@
                     </label>
                 </div>
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                    <table id="tabel_data" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
-                        <thead>
+                    <table id="tabel_data" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                        <thead class="bg-gray-100 text-gray-700">
                             <tr>
-                                <th>Nama Kandidat</th>
-                                <th>Posisi Yang Dilamar</th>
-                                <th>Pendidikan Terakhir</th>
-                                <th>Pengalaman Kerja</th>
-                                <th>Aksi</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Nama Kandidat</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Posisi Yang Dilamar</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Pendidikan Terakhir</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Pengalaman Kerja</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-gray-700">
                         @foreach ($data as $item)
-                            <tr>
-                                <td>{{ $item->objek->nama_kandidat }}</td>
-                                <td>{{ $item->objek->posisi_lamar ?? '-' }}</td>
-                                <td>{{ $item->objek->pendidikan_terakhir ?? '-' }}</td>
-                                <td>{{ $item->objek->pengalaman_kerja ?? '-' }}</td>
-                                <td class="flex gap-x-3">
-                                    <button onclick="return delete_button('{{ $item->id }}', '{{ $item->objek->nama_kandidat }}');">
-                                        <i class="ri-delete-bin-line text-xl"></i>
-                                    </button>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->objek->nama_kandidat }}</td>
+                                <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->objek->posisi_lamar ?? '-' }}</td>
+                                <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->objek->pendidikan_terakhir ?? '-' }}</td>
+                                <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->objek->pengalaman_kerja ?? '-' }}</td>
+                                <td class="px-8 py-4 border border-gray-300">
+                                    <div class="flex justify-center items-center gap-4">
+                                        <button class="text-red-600 hover:text-red-800"
+                                            onclick="return delete_button('{{ $item->id }}', '{{ $item->objek->nama_kandidat }}');">
+                                            <i class="ri-delete-bin-line text-xl"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

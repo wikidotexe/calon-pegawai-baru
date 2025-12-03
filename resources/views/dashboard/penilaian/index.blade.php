@@ -17,26 +17,26 @@
                 </div>
 
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                    <table id="tabel_data" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
-                        <thead>
+                    <table id="tabel_data" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                        <thead class="bg-gray-100 text-gray-700">
                             <tr>
-                                <th>Nama</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
                                 @foreach ($data->unique('kriteria_id') as $item)
-                                    <th>{{ $item->kriteria->nama }}</th>
+                                    <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->kriteria->nama }}</th>
                                 @endforeach
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-gray-700">
                             @foreach ($data->unique('alternatif_id') as $item)
-                                <tr>
-                                    <td>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-8 py-4 border border-gray-300 text-left">
                                         {{ $item->alternatif->objek->nama_kandidat }}
                                         <a href="{{ route('penilaian.ubah', $item->alternatif_id) }}"><i class="ri-pencil-fill text-xl text-warning"></i></a>
                                     </td>
                                     @foreach ($data->where('alternatif_id', $item->alternatif_id) as $value)
-                                        <th>
+                                        <td class="px-8 py-4 border border-gray-300 text-center">
                                             <span class="mr-2">@if ($value->subKriteria != null) {{ $value->subKriteria->nilai }} @endif</span>
-                                        </th>
+                                        </td>
                                     @endforeach
                                 </tr>
                             @endforeach

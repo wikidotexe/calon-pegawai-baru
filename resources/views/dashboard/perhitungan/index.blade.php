@@ -27,18 +27,18 @@
                 <h6>Bobot Kriteria <span class="text-greenPrimary">(W)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_bobot" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_bobot" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
                             @foreach ($kriteria as $item)
-                            <th>{{ $item->nama }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->nama }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody class="text-gray-700">
+                        <tr class="hover:bg-gray-50 transition">
                             @foreach ($kriteria as $item)
-                            <td>{{ $item->bobot }}</td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">{{ $item->bobot }}</td>
                             @endforeach
                         </tr>
                     </tbody>
@@ -52,21 +52,21 @@
                 <h6>Penilaian</h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_penilaian" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_penilaian" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
                             @foreach ($penilaian->unique('kriteria_id') as $item)
-                            <th>{{ $item->kriteria->nama }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->kriteria->nama }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($penilaian->unique('alternatif_id') as $item)
-                        <tr>
-                            <td>{{ $item->alternatif->objek->nama_kandidat }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->alternatif->objek->nama_kandidat }}</td>
                             @foreach ($penilaian->where('alternatif_id', $item->alternatif_id) as $value)
-                            <td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">
                                 @if ($value->subKriteria != null) {{ $value->subKriteria->nilai }} @endif
                             </td>
                             @endforeach
@@ -108,21 +108,21 @@
                 <h6>Matriks Normalisasi <span class="text-greenPrimary">(R)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_matriks_normalisasi" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_matriks_normalisasi" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
                             @foreach ($matriksNormalisasi->unique('kriteria_id') as $item)
-                            <th>{{ $item->nama_kriteria }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->nama_kriteria }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($matriksNormalisasi->unique('alternatif_id') as $item)
-                        <tr>
-                            <td>{{ $item->nama_objek }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama_objek }}</td>
                             @foreach ($matriksNormalisasi->where('alternatif_id', $item->alternatif_id) as $value)
-                            <td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">
                                 {{ round($value->nilai, 10) }}
                             </td>
                             @endforeach
@@ -139,21 +139,21 @@
                 <h6>Matriks Normalisasi Y</h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_matriks_y" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_matriks_y" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
                             @foreach ($matriksY->unique('kriteria_id') as $item)
-                            <th>{{ $item->nama_kriteria }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->nama_kriteria }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($matriksY->unique('alternatif_id') as $item)
-                        <tr>
-                            <td>{{ $item->nama_objek }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama_objek }}</td>
                             @foreach ($matriksY->where('alternatif_id', $item->alternatif_id) as $value)
-                            <td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">
                                 {{ round($value->nilai, 10) }}
                             </td>
                             @endforeach
@@ -170,20 +170,20 @@
                 <h6>Ideal Positif <span class="text-greenPrimary">(A<sup>+</sup>)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_ideal_positif" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_ideal_positif" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Kriteria</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Kriteria</th>
                             @foreach ($idealPositif->unique('kriteria_id') as $item)
-                            <th>{{ $item->nama_kriteria }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->nama_kriteria }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>A⁺</td>
+                    <tbody class="text-gray-700">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left font-semibold">A⁺</td>
                             @foreach ($idealPositif->unique('kriteria_id') as $item)
-                            <td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">
                                 {{ number_format($idealPositif->where('kriteria_id', $item->kriteria_id)->first()->nilai, 10) }}
                             </td>
                             @endforeach
@@ -200,20 +200,20 @@
                 <h6>Ideal Negatif <span class="text-greenPrimary">(A<sup>-</sup>)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_ideal_negatif" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_ideal_negatif" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Kriteria</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Kriteria</th>
                             @foreach ($idealNegatif->unique('kriteria_id') as $item)
-                            <th>{{ $item->nama_kriteria }}</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">{{ $item->nama_kriteria }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>A⁻</td>
+                    <tbody class="text-gray-700">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left font-semibold">A⁻</td>
                             @foreach ($idealNegatif->unique('kriteria_id') as $item)
-                            <td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">
                                 {{ number_format($idealNegatif->where('kriteria_id', $item->kriteria_id)->first()->nilai, 10) }}
                             </td>
                             @endforeach
@@ -229,18 +229,18 @@
                 <h6>Menghitung jarak ke solusi ideal <span class="text-greenPrimary">(D<sup>+</sup>)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_solusi_ideal_positif" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_solusi_ideal_positif" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
-                            <th>Nilai</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nilai</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($solusiIdealPositif as $index => $item)
-                        <tr>
-                            <td>D{{$index + 1}}+</td>
-                            <td>{{ round($item->nilai, 10) }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">D{{$index + 1}}+</td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">{{ round($item->nilai, 10) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -254,18 +254,18 @@
                 <h6>Menghitung jarak ke solusi ideal <span class="text-greenPrimary">(D<sup>-</sup>)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_solusi_ideal_negatif" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_solusi_ideal_negatif" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
-                            <th>Nilai</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nilai</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($solusiIdealNegatif as $index => $item)
-                        <tr>
-                            <td>D{{$index + 1}}-</td>
-                            <td>{{ round($item->nilai, 10) }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">D{{$index + 1}}-</td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">{{ round($item->nilai, 10) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -279,18 +279,18 @@
                 <h6>Nilai Prefrensi <span class="text-greenPrimary">(Vi)</span></h6>
             </div>
             <div id='recipients' class="p-8 rounded shadow bg-white">
-                <table id="tabel_data_hasil" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                    <thead>
+                <table id="tabel_data_hasil" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
                         <tr>
-                            <th>Nama</th>
-                            <th>Nilai</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
+                            <th class="px-8 py-4 border border-gray-300 font-semibold">Nilai</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-gray-700">
                         @foreach ($hasilTopsis as $item)
-                        <tr>
-                            <td>{{ $item->nama_objek }}</td>
-                            <td>{{ round($item->nilai, 10) }}</td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama_objek }}</td>
+                            <td class="px-8 py-4 border border-gray-300 text-center">{{ round($item->nilai, 10) }}</td>
                         </tr>
                         @endforeach
                     </tbody>

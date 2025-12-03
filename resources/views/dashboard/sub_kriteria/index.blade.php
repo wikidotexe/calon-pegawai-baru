@@ -18,17 +18,17 @@
                                 class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
                                 <thead class="bg-gray-100 text-gray-700">
                                     <tr>
-                                        <th class="px-6 py-3 border border-gray-300 font-semibold">Nama</th>
-                                        <th class="px-6 py-3 border border-gray-300 font-semibold">Nilai</th>
-                                        <th class="px-6 py-3 border border-gray-300 font-semibold">Aksi</th>
+                                        <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
+                                        <th class="px-8 py-4 border border-gray-300 font-semibold">Nilai</th>
+                                        <th class="px-8 py-4 border border-gray-300 font-semibold">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-700">
                                     @foreach ($item['sub_kriteria'] as $subKriteria)
                                         <tr class="hover:bg-gray-50 transition">
-                                            <td class="px-6 py-3 border border-gray-300 text-left">{{ $subKriteria['nama'] }}</td>
-                                            <td class="px-6 py-3 border border-gray-300 text-center">{{ $subKriteria['nilai'] }}</td>
-                                            <td class="px-6 py-3 border border-gray-300">
+                                            <td class="px-8 py-4 border border-gray-300 text-left">{{ $subKriteria['nama'] }}</td>
+                                            <td class="px-8 py-4 border border-gray-300 text-center">{{ $subKriteria['nilai'] }}</td>
+                                            <td class="px-8 py-4 border border-gray-300">
                                                 <div class="flex justify-center items-center gap-4">
                                                     <label for="edit_button" class="cursor-pointer text-blue-600 hover:text-blue-800"
                                                         onclick="return edit_button('{{ $subKriteria['id'] }}')">

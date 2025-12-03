@@ -17,24 +17,24 @@
                     <h6>Hasil Perhitungan TOPSIS</h6>
                 </div>
                 <div id='recipients' class="p-8 rounded shadow bg-white">
-                    <table id="tabel_data_hasil" class="stripe hover" style="width:100%; padding-bottom: 1em;">
-                        <thead>
+                    <table id="tabel_data_hasil" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                        <thead class="bg-gray-100 text-gray-700">
                             <tr>
-                                <th>Nama Kandidat</th>
-                                <th>Posisi Yang Dilamar</th>
-                                <th>Nilai</th>
-                                <th>Target</th>
-                                <th>Keterangan</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Nama Kandidat</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Posisi Yang Dilamar</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Nilai</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Target</th>
+                                <th class="px-8 py-4 border border-gray-300 font-semibold">Keterangan</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-gray-700">
                             @foreach ($hasilTopsis as $item)
-                                <tr>
-                                    <td>{{ $item->nama_objek }}</td>
-                                    <td>{{ $item->posisi_lamar }}</td>
-                                    <td>{{ round($item->nilai, 3) }}</td>
-                                    <td>0.5</td> 
-                                    <td>{{ $item->keterangan }}</td>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama_objek }}</td>
+                                    <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->posisi_lamar }}</td>
+                                    <td class="px-8 py-4 border border-gray-300 text-center">{{ round($item->nilai, 3) }}</td>
+                                    <td class="px-8 py-4 border border-gray-300 text-center">0.5</td> 
+                                    <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->keterangan }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
