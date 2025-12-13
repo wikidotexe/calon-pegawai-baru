@@ -34,10 +34,29 @@ class PenilaianRepository
     {
         // dd($data->all());
         $responses = [];
-        foreach ($this->kriteria->get() as $value => $item) {
-            $responses[] = $this->penilaian->where('alternatif_id', $data->alternatif_id)->where('kriteria_id', $item->id)->update([
-                "sub_kriteria_id" => $data->kriteria_id[$value],
-            ]);
+
+        $mapped = $data->input('sub_kriteria_id', []);
+        $legacy = $data->input('kriteria_id', []);
+
+        foreach ($this->kriteria->get() as $index => $item) {
+            $subKriteriaId = null;
+
+            if (is_array($mapped) && array_key_exists($item->id, $mapped)) {
+                $subKriteriaId = $mapped[$item->id];
+            } elseif (is_array($legacy) && array_key_exists($index, $legacy)) {
+                $subKriteriaId = $legacy[$index];
+            }
+
+            if ($subKriteriaId === null) {
+                continue;
+            }
+
+            $responses[] = $this->penilaian
+                ->where('alternatif_id', $data->alternatif_id)
+                ->where('kriteria_id', $item->id)
+                ->update([
+                    'sub_kriteria_id' => $subKriteriaId,
+                ]);
         }
         return $responses;
     }

@@ -25,8 +25,13 @@ class AlternatifController extends Controller
     {
         $judul = "Alternatif";
 
-        $data = $this->alternatifService->getAll();
         $objek = $this->objekService->getAll();
+        $synced = $this->alternatifService->syncFromObjek($objek);
+        if ($synced[0]) {
+            $this->penilaianService->simpanFromAlternatif($synced);
+        }
+
+        $data = $this->alternatifService->getAll();
 
         return view('dashboard.alternatif.index', [
             "judul" => $judul,

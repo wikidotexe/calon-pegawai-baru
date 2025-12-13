@@ -33,7 +33,7 @@
                                     <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->nama_objek }}</td>
                                     <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->posisi_lamar }}</td>
                                     <td class="px-8 py-4 border border-gray-300 text-center">{{ round($item->nilai, 3) }}</td>
-                                    <td class="px-8 py-4 border border-gray-300 text-center">0.5</td> 
+                                    <td class="px-8 py-4 border border-gray-300 text-center">{{ $target === null ? '-' : round($target, 3) }}</td> 
                                     <td class="px-8 py-4 border border-gray-300 text-left">{{ $item->keterangan }}</td>
                                 </tr>
                             @endforeach

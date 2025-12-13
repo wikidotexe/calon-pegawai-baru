@@ -10,7 +10,7 @@
 
                     <h3 class="text-xl font-semibold mb-4">
                         Ubah {{ $judul }}:
-                        <span class="text-greenPrimary" id="title_form">{{ $data->alternatif->objek->nama }}</span>
+                        <span class="text-greenPrimary" id="title_form">{{ $data->alternatif->objek->nama_kandidat }}</span>
                     </h3>
 
                     @foreach ($subKriteria->unique('kriteria_id') as $item)
@@ -21,8 +21,8 @@
                             </label>
 
                             <select 
-                                name="kriteria_id[]" 
-                                id="kriteria_id[]"
+                                name="sub_kriteria_id[{{ $item->kriteria_id }}]" 
+                                id="sub_kriteria_id_{{ $item->kriteria_id }}"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-10 text-dark bg-white
                                     focus:outline-none focus:ring-2 focus:ring-greenPrimary/40 focus:border-greenPrimary">
 
@@ -30,7 +30,7 @@
 
                                 @foreach ($subKriteria->where('kriteria_id', $item->kriteria_id) as $value)
                                     <option value="{{ $value->id }}"
-                                        {{ $value->id == $data2->where('kriteria_id', $item->kriteria_id)->first()->sub_kriteria_id ? 'selected' : '' }}>
+                                        {{ $value->id == optional($data2->where('kriteria_id', $item->kriteria_id)->first())->sub_kriteria_id ? 'selected' : '' }}>
                                         {{ $value->nama }}
                                     </option>
                                 @endforeach

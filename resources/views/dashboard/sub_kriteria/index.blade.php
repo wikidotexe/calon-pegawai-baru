@@ -13,9 +13,9 @@
                                 Tambah {{ $judul }}
                             </label>
                         </div>
-                        <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                        <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white overflow-x-auto">
                             <table id="{{ 'tabel_data_' . $item['kriteria'] }}"
-                                class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
+                                class="stripe hover w-full text-sm border border-gray-300 rounded-xl min-w-max">
                                 <thead class="bg-gray-100 text-gray-700">
                                     <tr>
                                         <th class="px-8 py-4 border border-gray-300 font-semibold">Nama</th>
@@ -52,7 +52,7 @@
                     <div class="flex flex-row items-center justify-between p-6 pb-0 mb-4 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <h6>Tabel Sub Kriteria</h6>
                     </div>
-                    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white overflow-x-auto">
                         <table id="tabel_data" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                             <thead>
                                 <tr>
@@ -185,6 +185,8 @@
                 @foreach ($data as $item)
                     $("#tabel_data_{{ $item['kriteria'] }}").DataTable({
                         responsive: true,
+                        scrollX: true,
+                        autoWidth: false,
                         order: [],
                     })
                     .columns.adjust()
@@ -198,6 +200,8 @@
             @else
                 $("#tabel_data").DataTable({
                         responsive: true,
+                        scrollX: true,
+                        autoWidth: false,
                         order: [],
                     })
                     .columns.adjust()

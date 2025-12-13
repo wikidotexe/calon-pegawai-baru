@@ -36,6 +36,24 @@ class AlternatifService
         return $data;
     }
 
+    public function syncFromObjek($objeks)
+    {
+        $existing = $this->alternatifRepository->getAll()->pluck('objek_id')->toArray();
+
+        $missing = [];
+        foreach ($objeks as $objek) {
+            if (!in_array($objek->id, $existing)) {
+                $missing[] = $objek->id;
+            }
+        }
+
+        if (count($missing) === 0) {
+            return [false, []];
+        }
+
+        return [true, $this->alternatifRepository->simpan($missing)];
+    }
+
     public function hapusPostData($request)
     {
         $data = $this->alternatifRepository->hapus($request);

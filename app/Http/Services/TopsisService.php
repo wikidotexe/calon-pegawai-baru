@@ -84,7 +84,7 @@ class TopsisService
     }
     public function simpanIdealPositif($data)
     {
-        $validate = $this->topsisRepository->getIdealPositifKriteriaAlternatif($data['kriteria_id'], $data['alternatif_id']);
+        $validate = $this->topsisRepository->getIdealPositifKriteria($data['kriteria_id']);
         if ($validate == null) {
             $this->topsisRepository->addIdealPositif($data);
 
@@ -99,7 +99,7 @@ class TopsisService
     }
     public function simpanIdealNegatif($data)
     {
-        $validate = $this->topsisRepository->getIdealNegatifKriteriaAlternatif($data['kriteria_id'], $data['alternatif_id']);
+        $validate = $this->topsisRepository->getIdealNegatifKriteria($data['kriteria_id']);
         if ($validate == null) {
             $this->topsisRepository->addIdealNegatif($data);
 

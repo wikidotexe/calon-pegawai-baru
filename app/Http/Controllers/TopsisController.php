@@ -24,18 +24,21 @@ class TopsisController extends Controller
         $judul = "Hasil Akhir";
         $hasilTopsis = $this->topsisServices->getHasilTopsis();
 
-        $target = 0.5;
-        foreach ($hasilTopsis as $item) {
-            if ($item->nilai < $target) {
-                $item->keterangan = 'Tidak Layak';
-            } else {
-                $item->keterangan = 'Layak';
-            }
+        $sorted = $hasilTopsis->sortByDesc('nilai')->values();
+        $total = $sorted->count();
+        $diterimaCount = $total <= 1 ? $total : max(1, (int) floor($total / 2));
+        $target = $total === 0 ? null : $sorted->get($diterimaCount - 1)->nilai;
+
+        foreach ($sorted as $index => $item) {
+            $item->keterangan = $index < $diterimaCount ? 'Diterima' : 'Ditolak';
         }
+
+        $hasilTopsis = $sorted;
 
         return view('dashboard.hasil_akhir.index', [
             'judul' => $judul,
             'hasilTopsis' => $hasilTopsis,
+            'target' => $target,
         ]);
     }
 
@@ -113,6 +116,17 @@ class TopsisController extends Controller
         $judul = "Laporan Hasil Akhir";
         $hasilTopsis = $this->topsisServices->getHasilTopsis();
 
+        $sorted = $hasilTopsis->sortByDesc('nilai')->values();
+        $total = $sorted->count();
+        $diterimaCount = $total <= 1 ? $total : max(1, (int) floor($total / 2));
+        $target = $total === 0 ? null : $sorted->get($diterimaCount - 1)->nilai;
+
+        foreach ($sorted as $index => $item) {
+            $item->keterangan = $index < $diterimaCount ? 'Diterima' : 'Ditolak';
+        }
+
+        $hasilTopsis = $sorted;
+
         $logo = base64_encode(file_get_contents(public_path('img/logo.jpg')));
         
         $pdf = PDF::setOptions(['defaultFont' => 'sans-serif'])
@@ -120,6 +134,7 @@ class TopsisController extends Controller
                 'judul' => $judul,
                 'hasilTopsis' => $hasilTopsis,
                 'logo' => $logo,
+                'target' => $target,
             ]);
 
         $tanggal = Carbon::now()->format('Y-m-d');

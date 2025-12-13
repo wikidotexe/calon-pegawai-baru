@@ -126,6 +126,11 @@ class TopsisRepository
 
         return $data;
     }
+    public function getIdealPositifKriteria($kriteria_id)
+    {
+        $data = DB::table('ideal_positif')->where('kriteria_id', $kriteria_id)->first();
+        return $data;
+    }
     public function getIdealPositifKriteriaAlternatif($kriteria_id, $alternatif_id)
     {
         $data = DB::table('ideal_positif')->where('kriteria_id', $kriteria_id)->where('alternatif_id', $alternatif_id)->first();
@@ -143,8 +148,9 @@ class TopsisRepository
     }
     public function updateIdealPositif($data)
     {
-        DB::table('ideal_positif')->where('kriteria_id', $data['kriteria_id'])->where('alternatif_id', $data['alternatif_id'])->update([
+        DB::table('ideal_positif')->where('kriteria_id', $data['kriteria_id'])->update([
             'nilai' => $data['nilai'],
+            'alternatif_id' => $data['alternatif_id'],
             'updated_at' => Carbon::now(),
         ]);
     }
@@ -157,6 +163,11 @@ class TopsisRepository
             ->select('in.*', 'k.nama as nama_kriteria', 'o.nama_kandidat as nama_objek')
             ->orderBy('in.id', 'asc')->get();
 
+        return $data;
+    }
+    public function getIdealNegatifKriteria($kriteria_id)
+    {
+        $data = DB::table('ideal_negatif')->where('kriteria_id', $kriteria_id)->first();
         return $data;
     }
     public function getIdealNegatifKriteriaAlternatif($kriteria_id, $alternatif_id)
@@ -176,8 +187,9 @@ class TopsisRepository
     }
     public function updateIdealNegatif($data)
     {
-        DB::table('ideal_negatif')->where('kriteria_id', $data['kriteria_id'])->where('alternatif_id', $data['alternatif_id'])->update([
+        DB::table('ideal_negatif')->where('kriteria_id', $data['kriteria_id'])->update([
             'nilai' => $data['nilai'],
+            'alternatif_id' => $data['alternatif_id'],
             'updated_at' => Carbon::now(),
         ]);
     }

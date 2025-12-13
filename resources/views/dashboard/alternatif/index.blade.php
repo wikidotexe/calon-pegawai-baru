@@ -6,10 +6,12 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex flex-row items-center justify-between p-6 pb-0 mb-4 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6>Tabel Kelola Data Kandidat</h6>
-                    <label for="add_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-greenPrimary to-greenPrimary/80 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
-                        <i class="ri-add-fill"></i>
-                        Tambah Data Kandidat
-                    </label>
+                    @if (false)
+                        <label for="add_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-greenPrimary to-greenPrimary/80 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
+                            <i class="ri-add-fill"></i>
+                            Tambah Data Kandidat
+                        </label>
+                    @endif
                 </div>
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
                     <table id="tabel_data" class="stripe hover w-full text-sm border border-gray-300 rounded-xl overflow-hidden">
@@ -44,56 +46,58 @@
                 </div>
             </div>
 
-            {{-- Form Tambah Data --}}
-            <input type="checkbox" id="add_button" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box">
-                    <form action="{{ route('alternatif.simpan') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+            @if (false)
+                {{-- Form Tambah Data --}}
+                <input type="checkbox" id="add_button" class="modal-toggle" />
+                <div class="modal">
+                    <div class="modal-box">
+                        <form action="{{ route('alternatif.simpan') }}" method="post" enctype="multipart/form-data">
+                            @csrf
 
-                        <h3 class="text-xl font-semibold mb-4">
-                            Tambah {{ $judul }}
-                        </h3>
+                            <h3 class="text-xl font-semibold mb-4">
+                                Tambah {{ $judul }}
+                            </h3>
 
-                        <!-- Pilih Objek -->
-                        <div class="mb-6">
-                            <label class="block mb-1 font-medium">Pilih Data Kandidat</label>
+                            <!-- Pilih Objek -->
+                            <div class="mb-6">
+                                <label class="block mb-1 font-medium">Pilih Data Kandidat</label>
 
-                            <select name="objek_id[]" id="objek_id" multiple="multiple"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-10 text-dark 
-                                    focus:outline-none focus:ring-2 focus:ring-greenPrimary/40 focus:border-greenPrimary">
-                                @foreach ($objek as $item)
-                                    <option value="{{ $item->id }}"
-                                        @selected(collect(old('objek_id'))->contains($item->id))>
-                                        {{ $item->nama_kandidat }}
-                                    </option>
-                                @endforeach
-                            </select>
+                                <select name="objek_id[]" id="objek_id" multiple="multiple"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-10 text-dark 
+                                        focus:outline-none focus:ring-2 focus:ring-greenPrimary/40 focus:border-greenPrimary">
+                                    @foreach ($objek as $item)
+                                        <option value="{{ $item->id }}"
+                                            @selected(collect(old('objek_id'))->contains($item->id))>
+                                            {{ $item->nama_kandidat }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                            @error('objek_id')
-                                <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                                @error('objek_id')
+                                    <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                        <!-- Actions -->
-                        <div class="modal-action flex gap-3 mt-6">
-                            <button type="submit"
-                                class="px-6 py-2 bg-greenPrimary text-greenPrimary rounded-3 shadow-sm 
-                                    active:scale-[0.98] transition-all">
-                                Simpan
-                            </button>
+                            <!-- Actions -->
+                            <div class="modal-action flex gap-3 mt-6">
+                                <button type="submit"
+                                    class="px-6 py-2 bg-greenPrimary text-greenPrimary rounded-3 shadow-sm 
+                                        active:scale-[0.98] transition-all">
+                                    Simpan
+                                </button>
 
-                            <label for="add_button"
-                                class="px-6 py-2 bg-gray-100 text-gray-700 rounded-3 border border-gray-300 
-                                    hover:bg-gray-200 cursor-pointer transition-all">
-                                Batal
-                            </label>
-                        </div>
+                                <label for="add_button"
+                                    class="px-6 py-2 bg-gray-100 text-gray-700 rounded-3 border border-gray-300 
+                                        hover:bg-gray-200 cursor-pointer transition-all">
+                                    Batal
+                                </label>
+                            </div>
 
-                    </form>
+                        </form>
+                    </div>
+                    <label class="modal-backdrop" for="add_button">Close</label>
                 </div>
-                <label class="modal-backdrop" for="add_button">Close</label>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

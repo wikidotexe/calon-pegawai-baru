@@ -34,23 +34,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $target = 0.5;
-                                $layak = 0;
-                                $tidakLayak = 0;
-                            @endphp
                             @foreach ($hasilTopsis as $item)
-                                @php
-                                    $keterangan = $item->nilai >= $target ? 'Layak' : 'Tidak Layak';
-                                    if ($keterangan === 'Layak') $layak++;
-                                    else $tidakLayak++;
-                                @endphp
                                 <tr style="background-color: {{ $loop->even ? '#f2f2f2' : 'white' }};">
                                     <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $item->nama_objek }}</td>
                                     <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $item->posisi_lamar }}</td>
                                     <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ round($item->nilai, 3) }}</td>
-                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $target }}</td>
-                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $keterangan }}</td>
+                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ isset($target) && $target !== null ? round($target, 3) : '-' }}</td>
+                                    <td style="border-bottom:1px solid #ddd; padding:8px; text-align:center;">{{ $item->keterangan }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
