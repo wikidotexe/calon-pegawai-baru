@@ -16,6 +16,8 @@ class AlternatifSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * Generate Alternatif dari Data Objek (Kandidat)
      */
     public function run(): void
     {

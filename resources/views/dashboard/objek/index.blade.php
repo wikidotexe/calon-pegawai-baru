@@ -6,15 +6,15 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex flex-row items-center justify-between p-6 pb-0 mb-4 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6>Tabel Data Kandidat</h6>
-                    <div>
+                    <div class="flex gap-2">
                         <label for="add_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-greenPrimary to-greenPrimary/80 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
                             <i class="ri-add-fill"></i>
                             Tambah Calon Kandidat
                         </label>
-                        <!-- <label for="import_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-greenPrimary to-greenPrimary/80 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
-                            <i class="ri-file-excel-line"></i>
-                            Import Data
-                        </label> -->
+                        <label for="import_button" class="cursor-pointer inline-block px-3 py-2 font-bold text-center text-white rounded-lg text-sm ease-soft-in shadow-soft-md bg-gradient-to-br from-blue-500 to-blue-600 shadow-soft-md hover:shadow-soft-xs active:opacity-85 hover:scale-102 transition-all">
+                            <i class="ri-file-upload-line"></i>
+                            Import CSV
+                        </label>
                     </div>
                 </div>
                 <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
@@ -236,23 +236,75 @@
                 <label class="modal-backdrop" for="edit_button">Close</label>
             </div>
 
-            {{-- Import Data --}}
+            {{-- Import Data CSV --}}
             <input type="checkbox" id="import_button" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box">
                     <form action="{{ route('objek.import') }}" method="post" enctype="multipart/form-data">
-                        <h3 class="font-bold text-lg">Import {{ $judul }}</h3>
-                            @csrf
-                            <div class="form-control w-full max-w-xs">
-                                <label class="label">
-                                    <span class="label-text">Import File</span>
-                                </label>
-                                <input type="file" name="import_data" class="file-input file-input-bordered w-full max-w-xs" required />
-                                @error('import_data')<span class="label-text-alt text-error">{{ $message }}</span>@enderror
-                            </div>
-                        <div class="modal-action">
-                            <button type="submit" class="btn btn-success">Import</button>
-                            <label for="import_button" class="btn">Batal</label>
+                        @csrf
+                        <h3 class="text-xl font-semibold mb-4">
+                            <i class="ri-file-upload-line text-blue-500"></i>
+                            Import Data Kandidat
+                        </h3>
+
+                        <!-- Info Box -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-blue-700 mb-2">
+                                <i class="ri-information-line"></i>
+                                <strong>Format File:</strong> CSV, XLS, atau XLSX
+                            </p>
+                            <p class="text-sm text-blue-700 mb-3">
+                                <i class="ri-file-list-line"></i>
+                                <strong>Kolom yang diperlukan:</strong>
+                            </p>
+                            <ul class="text-xs text-blue-600 ml-4 list-disc">
+                                <li>nama_kandidat</li>
+                                <li>posisi_lamar</li>
+                                <li>pendidikan_terakhir</li>
+                                <li>pengalaman_kerja</li>
+                            </ul>
+                        </div>
+
+                        <!-- Download Template -->
+                        <div class="mb-4">
+                            <a href="{{ route('objek.template') }}" 
+                               class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                                <i class="ri-download-line"></i>
+                                Download Template CSV
+                            </a>
+                        </div>
+
+                        <!-- File Input -->
+                        <div class="mb-6">
+                            <label class="block mb-2 font-medium">Pilih File</label>
+                            <input type="file" 
+                                   name="import_data" 
+                                   accept=".csv,.xls,.xlsx"
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg text-dark 
+                                          file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                                          file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700
+                                          hover:file:bg-blue-100 cursor-pointer
+                                          focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500" 
+                                   required />
+                            @error('import_data')
+                                <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="modal-action flex gap-3 mt-6">
+                            <button type="submit"
+                                class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow-sm 
+                                    hover:bg-blue-600 active:scale-[0.98] transition-all flex items-center gap-2">
+                                <i class="ri-upload-2-line"></i>
+                                Import
+                            </button>
+
+                            <label for="import_button"
+                                class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg border border-gray-300 
+                                    hover:bg-gray-200 cursor-pointer transition-all">
+                                Batal
+                            </label>
                         </div>
                     </form>
                 </div>

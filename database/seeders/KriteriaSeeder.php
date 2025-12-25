@@ -13,19 +13,23 @@ class KriteriaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * 
+     * Kriteria untuk Penerimaan Calon Pegawai Baru
+     * PT Lizzie Parra Kreasi
      */
     public function run(): void
     {
-        $kode = ["K00001", "K00002", "K00003", "K00004"];
-        $namaKriteria = ["Style", "Reliability", "Fuel-Economy", "Cost"];
-        $bobot = [0.1, 0.4, 0.3, 0.2];
+        $kriteria = [
+            ['kode' => 'K1', 'nama' => 'Pengalaman Kerja', 'bobot' => 0.25],
+            ['kode' => 'K2', 'nama' => 'Pendidikan', 'bobot' => 0.20],
+            ['kode' => 'K3', 'nama' => 'Usia', 'bobot' => 0.10],
+            ['kode' => 'K4', 'nama' => 'Hasil Tes Tertulis', 'bobot' => 0.20],
+            ['kode' => 'K5', 'nama' => 'Sikap & Kepribadian', 'bobot' => 0.15],
+            ['kode' => 'K6', 'nama' => 'Kesesuaian Kompetensi', 'bobot' => 0.10],
+        ];
 
-        foreach ($kode as $item => $value) {
-            Kriteria::create([
-                "kode" => $value,
-                "nama" => $namaKriteria[$item],
-                "bobot" => $bobot[$item],
-            ]);
+        foreach ($kriteria as $item) {
+            Kriteria::create($item);
         }
     }
 }

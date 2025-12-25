@@ -71,6 +71,7 @@ Route::group([
         Route::post('/ubah', [ObjekController::class, 'perbarui'])->name('objek.perbarui');
         Route::post('/hapus', [ObjekController::class, 'hapus'])->name('objek.hapus');
         Route::post('/import', [ObjekController::class, 'import'])->name('objek.import');
+        Route::get('/template', [ObjekController::class, 'downloadTemplate'])->name('objek.template');
     });
 
     Route::group([

@@ -7,8 +7,9 @@ use App\Models\Objek;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
-class ObjekImport implements ToModel, WithStartRow, WithHeadingRow
+class ObjekImport implements ToModel, WithStartRow, WithHeadingRow, SkipsEmptyRows
 {
     public function startRow(): int
     {
@@ -22,8 +23,13 @@ class ObjekImport implements ToModel, WithStartRow, WithHeadingRow
 
     public function model(array $row)
     {
+        // Skip if nama_kandidat is empty
+        if (empty($row['nama_kandidat'])) {
+            return null;
+        }
+
         return new Objek([
-            'nama_kandidat'         => $row['objek'],
+            'nama_kandidat'         => $row['nama_kandidat'],
             'posisi_lamar'          => $row['posisi_lamar'] ?? null,
             'pendidikan_terakhir'   => $row['pendidikan_terakhir'] ?? null,
             'pengalaman_kerja'      => $row['pengalaman_kerja'] ?? null,

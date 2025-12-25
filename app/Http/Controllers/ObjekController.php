@@ -59,13 +59,43 @@ class ObjekController extends Controller
         }
     }
 
-    // public function import(Request $request)
-    // {
-    //     $request->validate([
-    //         'import_data' => 'required|mimes:xls,xlsx'
-    //     ]);
+    public function import(Request $request)
+    {
+        $request->validate([
+            'import_data' => 'required|mimes:csv,xls,xlsx,txt'
+        ], [
+            'import_data.required' => 'File import harus diupload!',
+            'import_data.mimes' => 'Format file harus CSV, XLS, atau XLSX!'
+        ]);
 
-    //     $this->objekService->import($request);
-    //     return redirect('dashboard/objek')->with('berhasil', "Data berhasil diimport!");
-    // }
+        try {
+            $imported = $this->objekService->import($request);
+            return redirect('dashboard/objek')->with('berhasil', "Data kandidat berhasil diimport!");
+        } catch (\Exception $e) {
+            return redirect('dashboard/objek')->with('gagal', "Gagal import data: " . $e->getMessage());
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="template_import_kandidat.csv"',
+        ];
+
+        $columns = ['nama_kandidat', 'posisi_lamar', 'pendidikan_terakhir', 'pengalaman_kerja'];
+        
+        $callback = function() use ($columns) {
+            $file = fopen('php://output', 'w');
+            // Add BOM for Excel UTF-8 compatibility
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            fputcsv($file, $columns);
+            // Add sample data
+            fputcsv($file, ['John Doe', 'Software Engineer', 'S1', '3 Tahun']);
+            fputcsv($file, ['Jane Smith', 'Data Analyst', 'S2', '2 Tahun']);
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }
