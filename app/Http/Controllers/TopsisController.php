@@ -105,7 +105,7 @@ class TopsisController extends Controller
                 'logo' => $logo,
             ]);
 
-        $tanggal = Carbon::now()->format('Y-m-d');
+        $tanggal = Carbon::now()->locale('id')->translatedFormat('l, d-m-Y');
         $filename = 'Laporan Hasil TOPSIS-' . $tanggal . '.pdf';
 
         return $pdf->stream($filename);
@@ -137,7 +137,7 @@ class TopsisController extends Controller
                 'target' => $target,
             ]);
 
-        $tanggal = Carbon::now()->format('Y-m-d');
+        $tanggal = Carbon::now()->locale('id')->translatedFormat('l, d-m-Y');
         $filename = 'Laporan Hasil Akhir Topsis-' . $tanggal . '.pdf';
 
         return $pdf->stream($filename);

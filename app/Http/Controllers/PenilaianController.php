@@ -62,7 +62,7 @@ class PenilaianController extends Controller
         $subKriteria = $this->subKriteriaService->getAll();
 
         // Tanggal dengan Carbon
-        $tanggal = Carbon::now()->format('Y-m-d_H-i-s');
+        $tanggal = Carbon::now()->locale('id')->translatedFormat('l, d-m-Y_H-i-s');
 
         // Encode logo ke base64 supaya bisa muncul di PDF
         $logo = base64_encode(file_get_contents(public_path('img/logo.jpg')));

@@ -309,7 +309,7 @@
                     </table>
                     {{-- Bagian tanda tangan --}}
                     <div style="width: 100%; margin-top: 3em; text-align: right;">
-                        <p>Bekasi, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+                        <p>Bekasi, {{ \Carbon\Carbon::now()->locale('id')->translatedFormat('l, d F Y') }}</p>
                         <p style="margin-top: 4em; font-weight: bold; text-decoration: underline;">
                             Fitria Latifanisa
                         </p>
